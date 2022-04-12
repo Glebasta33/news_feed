@@ -6,7 +6,7 @@ import dagger.BindsInstance
 import dagger.Component
 
 @ApplicationScope
-@Component(modules = [ViewModelModule::class])
+@Component(modules = [ViewModelModule::class, DataModule::class])
 interface ApplicationComponent {
 
     fun inject(instance: NewsFeedFragment)
