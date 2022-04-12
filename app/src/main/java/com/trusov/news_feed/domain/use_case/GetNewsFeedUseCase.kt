@@ -6,5 +6,5 @@ import javax.inject.Inject
 class GetNewsFeedUseCase @Inject constructor(
     private val repository: Repository
 ) {
-    suspend fun invoke() = repository.getNewsFeed()
+    suspend operator fun invoke() = repository.getNewsFeed()
 }
