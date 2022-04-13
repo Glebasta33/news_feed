@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.trusov.news_feed.R
 import com.trusov.news_feed.databinding.FragmentNewsFeedBinding
 import com.trusov.news_feed.di.App
 import com.trusov.news_feed.di.ViewModelFactory
@@ -48,6 +50,12 @@ class NewsFeedFragment : Fragment() {
         binding.rvNewsFeed.adapter = newsAdapter
         viewModel.news.observe(viewLifecycleOwner) {
             newsAdapter.submitList(it)
+        }
+        newsAdapter.onNewsItemClickListener = {
+            val newsArgs = Bundle().apply {
+                putParcelable("News", it)
+            }
+            findNavController().navigate(R.id.action_newsFeedFragment_to_newsDetailedFragment, newsArgs)
         }
     }
 }

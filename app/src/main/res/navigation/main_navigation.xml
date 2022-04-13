@@ -7,5 +7,13 @@
     <fragment
         android:id="@+id/newsFeedFragment"
         android:name="com.trusov.news_feed.presentation.fragment.NewsFeedFragment"
-        android:label="NewsFeedFragment" />
+        android:label="NewsFeedFragment" >
+        <action
+            android:id="@+id/action_newsFeedFragment_to_newsDetailedFragment"
+            app:destination="@id/newsDetailedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsDetailedFragment"
+        android:name="com.trusov.news_feed.presentation.fragment.NewsDetailedFragment"
+        android:label="NewsDetailedFragment" />
 </navigation>

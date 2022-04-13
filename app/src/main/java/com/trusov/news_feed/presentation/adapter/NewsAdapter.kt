@@ -12,12 +12,8 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import com.squareup.picasso.Callback
-import com.squareup.picasso.NetworkPolicy
-import com.squareup.picasso.Picasso
 import com.trusov.news_feed.R
 import com.trusov.news_feed.domain.entity.News
-import java.lang.Exception
 import javax.inject.Inject
 
 class NewsAdapter @Inject constructor(

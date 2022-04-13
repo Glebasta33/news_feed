@@ -1,6 +1,7 @@
 package com.trusov.news_feed.di
 
 import android.app.Application
+import com.trusov.news_feed.presentation.fragment.NewsDetailedFragment
 import com.trusov.news_feed.presentation.fragment.NewsFeedFragment
 import dagger.BindsInstance
 import dagger.Component
@@ -10,6 +11,7 @@ import dagger.Component
 interface ApplicationComponent {
 
     fun inject(instance: NewsFeedFragment)
+    fun inject(instance: NewsDetailedFragment)
 
     @Component.Factory
     interface ApplicationComponentFactory {
