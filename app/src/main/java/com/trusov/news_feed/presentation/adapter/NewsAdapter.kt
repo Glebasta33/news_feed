@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isGone
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -18,7 +19,7 @@ import javax.inject.Inject
 
 class NewsAdapter @Inject constructor(
     private val application: Application
-) : ListAdapter<News, NewsViewHolder>(NewsDiffCallback()) {
+) : PagingDataAdapter<News, NewsViewHolder>(NewsDiffCallback()) {
 
     var onNewsItemClickListener: ((News) -> Unit)? = null
 
@@ -28,14 +29,14 @@ class NewsAdapter @Inject constructor(
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-        val news = currentList[position]
+        val news = getItem(position)
         with(holder.binding) {
-            tvTitle.text = news.title ?: ""
-            tvCreated.text = news.created ?: ""
-            tvDescription.text = news.description ?: ""
-            Log.d("NewsAdapter", news.imageUrl ?: "imageUrl = null")
+            tvTitle.text = news?.title ?: ""
+            tvCreated.text = news?.created ?: ""
+            tvDescription.text = news?.description ?: ""
+            Log.d("NewsAdapter", news?.imageUrl ?: "imageUrl = null")
             Glide.with(application)
-                .load(news.imageUrl)
+                .load(news?.imageUrl)
                 .listener(object : RequestListener<Drawable> {
                     override fun onLoadFailed(
                         e: GlideException?,
@@ -61,8 +62,15 @@ class NewsAdapter @Inject constructor(
                 .into(ivImage)
 
             root.setOnClickListener {
-                onNewsItemClickListener?.invoke(news)
+                news?.let { news ->
+                    onNewsItemClickListener?.invoke(news)
+                }
             }
         }
+    }
+
+    override fun onViewRecycled(holder: NewsViewHolder) {
+        super.onViewRecycled(holder)
+        holder.binding.ivImage.isGone = false
     }
 }

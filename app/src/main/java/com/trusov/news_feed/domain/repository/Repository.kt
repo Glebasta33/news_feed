@@ -1,8 +1,8 @@
 package com.trusov.news_feed.domain.repository
 
+import androidx.paging.PagingSource
 import com.trusov.news_feed.domain.entity.News
 
 interface Repository {
-    suspend fun getNewsFeed(): List<News>
-    suspend fun getNewsDetailed(): News
+    fun getNewsFeed(): PagingSource<Int, News>
 }
