@@ -1,6 +1,5 @@
 package com.trusov.news_feed.data.remote.retrofit
 
-import com.trusov.news_feed.data.remote.dto.ArticleDto
 import com.trusov.news_feed.data.remote.dto.ResponseDto
 import retrofit2.http.GET
 import retrofit2.http.Query

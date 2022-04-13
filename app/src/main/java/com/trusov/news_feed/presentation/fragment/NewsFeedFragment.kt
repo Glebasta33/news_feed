@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.trusov.news_feed.databinding.FragmentNewsFeedBinding
 import com.trusov.news_feed.di.App
 import com.trusov.news_feed.di.ViewModelFactory
+import com.trusov.news_feed.presentation.adapter.NewsAdapter
 import com.trusov.news_feed.presentation.view_model.NewsFeedViewModel
 import javax.inject.Inject
 
@@ -24,6 +25,8 @@ class NewsFeedFragment : Fragment() {
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelFactory)[NewsFeedViewModel::class.java]
     }
+    @Inject
+    lateinit var newsAdapter: NewsAdapter
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -42,5 +45,9 @@ class NewsFeedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getNewsFeed()
+        binding.rvNewsFeed.adapter = newsAdapter
+        viewModel.news.observe(viewLifecycleOwner) {
+            newsAdapter.submitList(it)
+        }
     }
 }

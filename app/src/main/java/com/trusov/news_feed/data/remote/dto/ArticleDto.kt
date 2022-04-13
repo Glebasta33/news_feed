@@ -15,7 +15,7 @@ data class ArticleDto(
     val description: String?,
     @SerializedName("publishedAt")
     @Expose
-    val publishedAt: String,
+    val publishedAt: String?,
     @SerializedName("source")
     @Expose
     val source: SourceDto,

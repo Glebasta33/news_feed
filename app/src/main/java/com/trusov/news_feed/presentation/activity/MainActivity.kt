@@ -1,7 +1,8 @@
-package com.trusov.news_feed
+package com.trusov.news_feed.presentation.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.trusov.news_feed.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

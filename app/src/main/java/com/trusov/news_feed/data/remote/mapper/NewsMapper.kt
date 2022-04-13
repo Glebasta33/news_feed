@@ -10,6 +10,7 @@ class NewsMapper @Inject constructor() {
         title = dto.title,
         description = dto.description,
         imageUrl = dto.urlToImage,
-        content = dto.content
+        content = dto.content,
+        created = dto.publishedAt?.replace("T", " ")?.replace("Z", " ")
     )
 }
